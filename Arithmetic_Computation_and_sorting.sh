@@ -16,7 +16,6 @@ echo " a+b*c = $compute"
 compute=$(($a*$b+$c))
 echo " a*b+c = $compute"
 
-
 # UC-4 Operation
 
 compute=`echo $a $b $c |awk '{print $3+$1/$2 }'`
