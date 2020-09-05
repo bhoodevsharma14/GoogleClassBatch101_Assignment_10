@@ -31,3 +31,8 @@ compute=$(($a%$b+$c))
 echo " a%b+c = $compute"
 Result["UC5"]=$compute
 
+for step in ${!Result[@]}
+do
+	ResultArray+=(${Result[$step]})
+done
+
