@@ -20,3 +20,8 @@ echo " a*b+c = $compute"
 
 compute=`echo $a $b $c |awk '{print $3+$1/$2 }'`
 echo " c+a/b = $compute"
+
+# UC-5 Operation
+
+compute=$(($a%$b+$c))
+echo " a%b+c = $compute"
