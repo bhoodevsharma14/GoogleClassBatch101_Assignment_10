@@ -4,21 +4,21 @@ read -p "Enter value of a : " a
 read -p "Enter value of b : " b
 read -p "Enter value of c : " c
 
-function SortArray()
+function SortArrayDescending()
 {
-	newArray=("$@")
+   newArray=("$@")
         while True
         do
                 max=0
                 for index in ${!newArray[@]}
                 do
-								if (( ${max%%.*} == 0 || ${newArray[$index]%%.*} > ${max%%.*} ))
+                        if (( ${max%%.*} == 0 || ${newArray[$index]%%.*} > ${max%%.*} ))
                         then
                                 max=${newArray[$index]}
                                 remove=$index
                         fi
                 done
-                SortedArray+=($max)
+                SortedArrayDescending+=($max)
                 unset newArray[$remove]
                 length=${#newArray[@]}
                 if [ $length -eq 0 ]
@@ -26,7 +26,32 @@ function SortArray()
                         break
                 fi
         done
-        echo Sorted Array is ${SortedArray[@]}
+        echo "Sorted Array in Descending Order ${SortedArrayDescending[@]}"
+}
+
+function SortArrayAscending()
+{
+   newArray=("$@")
+        while True
+        do
+                min=0
+                for index in ${!newArray[@]}
+                do
+                         if (( ${min%%.*} == 0 || ${newArray[$index]%%.*} < ${min%%.*} ))
+                        then
+                                min=${newArray[$index]}
+                                remove=$index
+                        fi
+                done
+                SortedArrayAscending+=($min)
+                unset newArray[$remove]
+                length=${#newArray[@]}
+                if [ $length -eq 0 ]
+                then
+                        break
+                fi
+        done
+        echo "Sorted Array in Ascending Order ${SortedArrayAscending[@]}"
 }
 
 declare -A Result
@@ -62,4 +87,7 @@ do
 	ResultArray+=(${Result[$step]})
 done
 
-SortArray ${ResultArray[@]}
+SortArrayDescending ${ResultArray[@]}
+
+SortArrayAscending ${ResultArray[@]}
+
